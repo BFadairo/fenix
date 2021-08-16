@@ -262,16 +262,31 @@ android.applicationVariants.all { variant ->
 
         println("versionName override: $versionName")
 
-        variant.outputs.each { output ->
-            def abi = output.getFilter(OutputFile.ABI)
-            // We use the same version code generator, that we inherited from Fennec, across all channels - even on
-            // channels that never shipped a Fennec build.
-            def versionCodeOverride = Config.generateFennecVersionCode(abi)
 
-            println("versionCode for $abi = $versionCodeOverride")
+        if (project.hasProperty("mozillaOnline") || gradle.hasProperty("localProperties.mozillaOnline")) {
+            variant.outputs.each { output ->
+                def abi = output.getFilter(OutputFile.ABI)
+                // We use the same version code generator, that we inherited from Fennec, across all channels - even on
+                // channels that never shipped a Fennec build.
+                def versionCodeOverride = Config.generateFennecVersionCode("armeabi-v7a")
 
-            output.versionNameOverride = versionName
-            output.versionCodeOverride = versionCodeOverride
+                println("versionCode for $abi = $versionCodeOverride")
+
+                output.versionNameOverride = versionName
+                output.versionCodeOverride = versionCodeOverride
+            }
+        } else {
+            variant.outputs.each { output ->
+                def abi = output.getFilter(OutputFile.ABI)
+                // We use the same version code generator, that we inherited from Fennec, across all channels - even on
+                // channels that never shipped a Fennec build.
+                def versionCodeOverride = Config.generateFennecVersionCode(abi)
+
+                println("versionCode for $abi = $versionCodeOverride")
+
+                output.versionNameOverride = versionName
+                output.versionCodeOverride = versionCodeOverride
+            }
         }
     }
 
