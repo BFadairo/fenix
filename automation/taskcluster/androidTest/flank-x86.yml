@@ -38,7 +38,6 @@ gcloud:
   performance-metrics: true
 
   test-targets:
-    - class org.mozilla.fenix.ui.StrictEnhancedTrackingProtectionTest
     - class org.mozilla.fenix.ui.SmokeTest#customTrackingProtectionSettingsTest
 #   - notPackage org.mozilla.fenix.screenshots
 #   - notPackage org.mozilla.fenix.syncintegration

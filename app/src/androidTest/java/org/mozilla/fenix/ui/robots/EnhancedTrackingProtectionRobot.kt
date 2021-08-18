@@ -70,7 +70,9 @@ class EnhancedTrackingProtectionRobot {
         }
 
         fun openProtectionSettings(interact: SettingsSubMenuEnhancedTrackingProtectionRobot.() -> Unit): Transition {
-            onView(withId(R.id.trackingProtectionDetails)).click()
+            openEnhancedTrackingProtectionDetails()
+                .check(matches(isDisplayed()))
+                .click()
             openEnhancedTrackingProtectionSettings().click()
 
             SettingsSubMenuEnhancedTrackingProtectionRobot().interact()
@@ -78,7 +80,9 @@ class EnhancedTrackingProtectionRobot {
         }
 
         fun openDetails(interact: EnhancedTrackingProtectionRobot.() -> Unit): Transition {
-            openEnhancedTrackingProtectionDetails().click()
+            openEnhancedTrackingProtectionDetails()
+                .check(matches(isDisplayed()))
+                .click()
 
             EnhancedTrackingProtectionRobot().interact()
             return Transition()
