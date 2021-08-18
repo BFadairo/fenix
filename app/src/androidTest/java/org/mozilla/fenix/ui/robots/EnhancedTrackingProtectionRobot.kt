@@ -49,17 +49,19 @@ class EnhancedTrackingProtectionRobot {
 
     class Transition {
         fun openEnhancedTrackingProtectionSheet(interact: EnhancedTrackingProtectionRobot.() -> Unit): Transition {
+            openEnhancedTrackingProtectionSheet().waitForExists(waitingTime)
             openEnhancedTrackingProtectionSheet().click()
+
             EnhancedTrackingProtectionRobot().interact()
             return Transition()
         }
 
-        fun closeEnhancedTrackingProtectionSheet(interact: BrowserRobot.() -> Unit): Transition {
+        fun closeEnhancedTrackingProtectionSheet(interact: BrowserRobot.() -> Unit): BrowserRobot.Transition {
             // Back out of the Enhanced Tracking Protection sheet
             mDevice.pressBack()
 
             BrowserRobot().interact()
-            return Transition()
+            return BrowserRobot.Transition()
         }
 
         fun disableEnhancedTrackingProtectionFromSheet(interact: EnhancedTrackingProtectionRobot.() -> Unit): Transition {
@@ -70,9 +72,8 @@ class EnhancedTrackingProtectionRobot {
         }
 
         fun openProtectionSettings(interact: SettingsSubMenuEnhancedTrackingProtectionRobot.() -> Unit): Transition {
-            openEnhancedTrackingProtectionDetails()
-                .check(matches(isDisplayed()))
-                .click()
+            openEnhancedTrackingProtectionDetails().waitForExists(waitingTime)
+            openEnhancedTrackingProtectionDetails().click()
             openEnhancedTrackingProtectionSettings().click()
 
             SettingsSubMenuEnhancedTrackingProtectionRobot().interact()
@@ -80,9 +81,8 @@ class EnhancedTrackingProtectionRobot {
         }
 
         fun openDetails(interact: EnhancedTrackingProtectionRobot.() -> Unit): Transition {
-            openEnhancedTrackingProtectionDetails()
-                .check(matches(isDisplayed()))
-                .click()
+            openEnhancedTrackingProtectionDetails().waitForExists(waitingTime)
+            openEnhancedTrackingProtectionDetails().click()
 
             EnhancedTrackingProtectionRobot().interact()
             return Transition()
@@ -117,7 +117,7 @@ private fun assertEnhancedTrackingProtectionDetailsStatus(status: String) {
 }
 
 private fun openEnhancedTrackingProtectionSheet() =
-    onView(withId(R.id.mozac_browser_toolbar_security_indicator))
+    mDevice.findObject(UiSelector().resourceId("$packageName:id/mozac_browser_toolbar_security_indicator"))
 
 private fun disableEnhancedTrackingProtection() =
     onView(ViewMatchers.withResourceName("switch_widget"))
@@ -126,7 +126,7 @@ private fun openEnhancedTrackingProtectionSettings() =
     onView(withId(R.id.protection_settings))
 
 private fun openEnhancedTrackingProtectionDetails() =
-    onView(withId(R.id.trackingProtectionDetails))
+    mDevice.findObject(UiSelector().resourceId("$packageName:id/trackingProtectionDetails"))
 
 private fun assertTrackingCookiesBlocked() {
     mDevice.findObject(UiSelector().resourceId("$packageName:id/cross_site_tracking"))

@@ -91,31 +91,6 @@ class StrictEnhancedTrackingProtectionTest {
     }
 
     @Test
-    fun testStrictVisitDisable() {
-        val trackingProtectionTest =
-            TestAssetHelper.getEnhancedTrackingProtectionAsset(mockWebServer)
-
-        navigationToolbar {
-        }.enterURLAndEnterToBrowser(trackingProtectionTest.url) {}
-
-        enhancedTrackingProtection {
-        }.openEnhancedTrackingProtectionSheet {
-            verifyEnhancedTrackingProtectionSheetStatus("ON", true)
-        }.disableEnhancedTrackingProtectionFromSheet {
-            verifyEnhancedTrackingProtectionSheetStatus("OFF", false)
-        }.closeEnhancedTrackingProtectionSheet {}
-
-        // Verify that Enhanced Tracking Protection remains globally enabled
-        navigationToolbar {
-        }.openThreeDotMenu {
-            verifyThreeDotMenuExists()
-        }.openSettings {
-            verifyEnhancedTrackingProtectionButton()
-            verifyEnhancedTrackingProtectionValue("On")
-        }
-    }
-
-    @Test
     fun testStrictVisitDisableExceptionToggle() {
         val trackingProtectionTest =
             TestAssetHelper.getEnhancedTrackingProtectionAsset(mockWebServer)
