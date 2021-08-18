@@ -82,9 +82,10 @@ class StrictEnhancedTrackingProtectionTest {
             TestAssetHelper.getEnhancedTrackingProtectionAsset(mockWebServer)
 
         navigationToolbar {
-        }.openTrackingProtectionTestPage(trackingProtectionTest.url, true) {}
+        }.enterURLAndEnterToBrowser(trackingProtectionTest.url) {}
 
-        enhancedTrackingProtection {}.openEnhancedTrackingProtectionSheet {
+        enhancedTrackingProtection {
+        }.openEnhancedTrackingProtectionSheet {
             verifyEnhancedTrackingProtectionSheetStatus("ON", true)
         }
     }
@@ -95,7 +96,7 @@ class StrictEnhancedTrackingProtectionTest {
             TestAssetHelper.getEnhancedTrackingProtectionAsset(mockWebServer)
 
         navigationToolbar {
-        }.openTrackingProtectionTestPage(trackingProtectionTest.url, true) {}
+        }.enterURLAndEnterToBrowser(trackingProtectionTest.url) {}
 
         enhancedTrackingProtection {
         }.openEnhancedTrackingProtectionSheet {
@@ -120,7 +121,7 @@ class StrictEnhancedTrackingProtectionTest {
             TestAssetHelper.getEnhancedTrackingProtectionAsset(mockWebServer)
 
         navigationToolbar {
-        }.openTrackingProtectionTestPage(trackingProtectionTest.url, true) {}
+        }.enterURLAndEnterToBrowser(trackingProtectionTest.url) {}
 
         enhancedTrackingProtection {
         }.openEnhancedTrackingProtectionSheet {
@@ -147,7 +148,7 @@ class StrictEnhancedTrackingProtectionTest {
             TestAssetHelper.getEnhancedTrackingProtectionAsset(mockWebServer)
 
         navigationToolbar {
-        }.openTrackingProtectionTestPage(trackingProtectionTest.url, true) {}
+        }.enterURLAndEnterToBrowser(trackingProtectionTest.url) {}
 
         enhancedTrackingProtection {
         }.openEnhancedTrackingProtectionSheet {

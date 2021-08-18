@@ -119,10 +119,10 @@ private fun disableEnhancedTrackingProtection() =
     onView(ViewMatchers.withResourceName("switch_widget"))
 
 private fun openEnhancedTrackingProtectionSettings() =
-    onView(ViewMatchers.withId(R.id.protection_settings))
+    onView(withId(R.id.protection_settings))
 
 private fun openEnhancedTrackingProtectionDetails() =
-    onView(ViewMatchers.withId(R.id.trackingProtectionDetails))
+    onView(withId(R.id.trackingProtectionDetails))
 
 private fun assertTrackingCookiesBlocked() {
     mDevice.findObject(UiSelector().resourceId("$packageName:id/cross_site_tracking"))
